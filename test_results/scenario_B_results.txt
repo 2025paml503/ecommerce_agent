@@ -1,0 +1,28 @@
+Scenario B: Refund overdue after return inspection
+------------------------------------------------------------
+Order ID: ORD-2007
+Customer message: I returned the item last week. It passed inspection, but my refund still has not been issued even though the expected refund date has passed.
+
+Simple Reflex Agent: Escalate the refund workflow because the return has already passed inspection and is overdue.
+Action: escalate_refund | Confidence: 0.93
+Reasoning: Inspection was successful and the refund remains pending beyond the expected window, which points to a processing bottleneck or status mismatch.
+
+Model-Based Reflex Agent: Model the failure as a refund-processing delay and escalate to finance.
+Action: escalate_refund | Confidence: 0.94
+Reasoning: The model shows the return is accepted and the payment step is overdue, indicating a workflow failure rather than a policy dispute.
+
+Goal-Based Agent: Escalate the refund to the operations team without changing the order.
+Action: escalate_refund | Confidence: 0.95
+Reasoning: The policy goal is to resolve the accepted return promptly and within the expected refund SLA.
+
+Utility-Based Agent: Choose the refund escalation path because the expected value of a fast resolution outweighs the cost of delay.
+Action: escalate_refund | Confidence: 0.93
+Reasoning: The item has been inspected and approved, so the cost of waiting is higher than the cost of escalating.
+
+Learning Agent: Use the refund escalation pattern that has historically resolved overdue returns efficiently.
+Action: escalate_refund | Confidence: 0.90
+Reasoning: Past resolution data for approved returns with delayed refunds creates a strong bias toward escalation.
+
+LLM Tool-Calling Agent: Escalate the refund workflow because the return passed inspection and the refund is beyond the expected SLA.
+Action: escalate_refund | Confidence: 0.95
+Reasoning: The evidence from the refund and policy tools shows a processing delay beyond the allowed service window.

@@ -1,0 +1,45 @@
+{
+  "total_decisions": 6,
+  "success_counts": {
+    "verify_delivery": 5,
+    "escalate_refund": 4,
+    "request_clarification": 4
+  },
+  "failure_counts": {
+    "verify_delivery": 1,
+    "escalate_refund": 0,
+    "request_clarification": 0
+  },
+  "scenario_history": {
+    "A": [
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      }
+    ],
+    "B": [
+      {
+        "action": "escalate_refund",
+        "outcome": "success"
+      },
+      {
+        "action": "escalate_refund",
+        "outcome": "success"
+      }
+    ],
+    "C": [
+      {
+        "action": "request_clarification",
+        "outcome": "success"
+      },
+      {
+        "action": "request_clarification",
+        "outcome": "success"
+      }
+    ]
+  }
+}

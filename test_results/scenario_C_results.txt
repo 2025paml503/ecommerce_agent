@@ -1,0 +1,28 @@
+Scenario C: Conflicting or incomplete records
+------------------------------------------------------------
+Order ID: ORD-3004
+Customer message: I never got the order, but the system shows it was cancelled. I am not sure if the item was sent or not.
+
+Simple Reflex Agent: Request clarification and review the order history before making a policy decision.
+Action: request_clarification | Confidence: 0.88
+Reasoning: The record is internally inconsistent or incomplete, so any action without additional evidence would be risky and potentially incorrect.
+
+Model-Based Reflex Agent: Model the case as incomplete information and request clarification before any cash action.
+Action: request_clarification | Confidence: 0.90
+Reasoning: The known facts do not support a stable world state, so the correct next step is to gather more evidence.
+
+Goal-Based Agent: Clarify the customer message and the order record before any refund or replacement action.
+Action: request_clarification | Confidence: 0.89
+Reasoning: The primary goal is to avoid making a wrong decision from contradictory data.
+
+Utility-Based Agent: Choose clarification because the cost of a wrong decision is higher than the cost of waiting for more evidence.
+Action: request_clarification | Confidence: 0.90
+Reasoning: The expected utility is highest when data quality is improved before any final action.
+
+Learning Agent: Use the clarification path because conflicting records have historically produced the lowest regret.
+Action: request_clarification | Confidence: 0.88
+Reasoning: When a case contains conflicts, prior fails show that clarifying first avoids the most expensive mistakes.
+
+LLM Tool-Calling Agent: Request clarification and investigate conflicting records before making a final decision.
+Action: request_clarification | Confidence: 0.93
+Reasoning: The LLM correctly avoids taking action from incomplete or contradictory records, citing the need for clarification and policy adherence.
