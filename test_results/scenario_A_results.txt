@@ -3,26 +3,26 @@ Scenario A: Delivered but not received
 Order ID: ORD-1001
 Customer message: The package was marked delivered yesterday, but I never received it. The delivery driver did not leave a parcel or leave any message.
 
-Simple Reflex Agent: Check the operational record and policy rules before taking action.
-Action: review_records | Confidence: 0.72
-Reasoning: The combination of state and message does not point to a single risk pattern, so the case needs evidence review.
+Simple Reflex Agent: Open a delivery verification case and investigate the courier proof before refunding.
+Action: verify_delivery | Confidence: 0.91
+Reasoning: The system says the order was delivered, while the customer reports no receipt. This is a delivery-failure pattern that should be checked before any refund decision.
 
-Model-Based Reflex Agent: Collect more evidence to update the model before deciding.
-Action: review_records | Confidence: 0.76
-Reasoning: The current state is uncertain, and the decision should only be made after the model can explain the missing facts.
+Model-Based Reflex Agent: Model the situation as a likely delivery exception and verify handoff evidence.
+Action: verify_delivery | Confidence: 0.92
+Reasoning: The delivery state suggests a possible lost parcel or misdelivery. The internal model predicts delivery failure until evidence is checked.
 
 Goal-Based Agent: Verify the delivery chain and confirm whether the order was misdelivered or lost.
 Action: verify_delivery | Confidence: 0.90
 Reasoning: Protecting the customer and resolving the mismatch between the status and the report is the highest-priority operational goal.
 
-Utility-Based Agent: Review additional records to estimate which action yields the best expected utility.
-Action: review_records | Confidence: 0.70
-Reasoning: There is no single high-confidence choice in the current state.
+Utility-Based Agent: Choose the action with the best expected value: confirm delivery evidence before refunding.
+Action: verify_delivery | Confidence: 0.91
+Reasoning: Verifying courier proof has more expected benefit than issuing a broad refund or immediate replacement.
 
 Learning Agent: Use past experience to prioritize delivery verification because it has the strongest success rate in similar cases.
 Action: verify_delivery | Confidence: 0.87
 Reasoning: The learning loop rates delivery verification highly in this pattern and improves the recommendation as more successful outcomes are recorded.
 
-LLM Tool-Calling Agent: Review the account and operational logs before taking action.
-Action: review_records | Confidence: 0.79
-Reasoning: The case does not fit the cleanest pattern, so the model recommends caution and evidence collection.
+LLM Tool-Calling Agent: Verify the courier handoff and open a lost-parcel investigation before issuing any refund.
+Action: verify_delivery | Confidence: 0.96
+Reasoning: The order and delivery tool evidence show an unresolved handoff risk.

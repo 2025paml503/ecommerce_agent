@@ -1,4 +1,4 @@
-Assignment 1 validation summary
-=============================
-Command: python -m pytest -q assignment1/tests/test_agents.py
-Result: 3 passed in 1.13s
+E-commerce support assistant validation summary
+==============================================
+Command: python -m pytest -q tests/test_agents.py
+Result: 5 passed

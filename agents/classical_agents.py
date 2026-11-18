@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List
 
-from agents.base import AgentDecision, Scenario
+from agents.base import AgentDecision, Scenario, reports_not_received
 
 
 class SimpleReflexAgent:
@@ -12,7 +12,7 @@ class SimpleReflexAgent:
         text = scenario.customer_message.lower()
         order = scenario.order_status.lower()
         refund = scenario.refund_status.lower()
-        if "not received" in text and "delivered" in order:
+        if reports_not_received(scenario) and "delivered" in order:
             recommendation = "Open a delivery verification case and investigate the courier proof before refunding."
             reasoning = "The system says the order was delivered, while the customer reports no receipt. This is a classic delivery-failure pattern that should be checked before any refund decision."
             action = "verify_delivery"
@@ -50,7 +50,7 @@ class SimpleReflexAgent:
 class ModelBasedReflexAgent:
     def decide(self, scenario: Scenario) -> AgentDecision:
         customer_text = scenario.customer_message.lower()
-        if "not received" in customer_text and "delivered" in scenario.order_status.lower():
+        if reports_not_received(scenario) and "delivered" in scenario.order_status.lower():
             recommendation = "Model the situation as a likely delivery exception and verify handoff evidence."
             reasoning = "The delivery state suggests a possible lost parcel or misdelivery. The internal model predicts a high chance of delivery failure until evidence is checked."
             action = "verify_delivery"
@@ -92,7 +92,7 @@ class GoalBasedAgent:
             "request_clarification": 0.0,
         }
 
-        if "not received" in scenario.customer_message.lower() and "delivered" in scenario.order_status.lower():
+        if reports_not_received(scenario) and "delivered" in scenario.order_status.lower():
             goals["verify_delivery"] = 0.95
         if scenario.inspection_status.lower() == "passed" and "pending" in scenario.refund_status.lower():
             goals["escalate_refund"] = 0.96
@@ -131,7 +131,7 @@ class UtilityBasedAgent:
             "request_clarification": 0.0,
         }
 
-        if "not received" in scenario.customer_message.lower() and "delivered" in scenario.order_status.lower():
+        if reports_not_received(scenario) and "delivered" in scenario.order_status.lower():
             candidates["verify_delivery"] = 0.95
             candidates["request_clarification"] = 0.44
             candidates["escalate_refund"] = 0.21
@@ -208,7 +208,7 @@ class LearningAgent:
         for action, value in failure_counts.items():
             action_scores[action] = action_scores.get(action, 0.35) - (value * 0.06)
 
-        if "not received" in scenario.customer_message.lower() and "delivered" in scenario.order_status.lower():
+        if reports_not_received(scenario) and "delivered" in scenario.order_status.lower():
             action_scores["verify_delivery"] += 0.75
         elif scenario.inspection_status.lower() == "passed" and "pending" in scenario.refund_status.lower():
             action_scores["escalate_refund"] += 0.75
@@ -244,7 +244,10 @@ class LearningAgent:
             action=best_action,
             evidence={
                 "historical_success_counts": success_counts,
+                "historical_failure_counts": failure_counts,
                 "scenario_id": scenario.scenario_id,
                 "experience_path": str(self.experience_path),
+                "experience_basis": "Success/failure counts influence the action score; scenario outcomes are appended to history.",
+                "limitation": "Experience is a small local simulation and is not evidence of real-world refund or delivery outcomes.",
             },
         )

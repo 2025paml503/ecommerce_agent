@@ -40,6 +40,30 @@ def get_decisions_for_scenario(scenario):
 
 
 st.set_page_config(page_title="Support Agent Comparison", layout="wide")
+st.markdown(
+    """
+    <style>
+    [data-testid="stAppViewContainer"] .main .block-container {
+        max-width: 1180px;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+    [data-testid="stAppViewContainer"] h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+    [data-testid="stAppViewContainer"] h3 {
+        font-size: 1.15rem;
+    }
+    [data-testid="stHeader"] {
+        height: 2.5rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 st.title("E-commerce Order and Refund Support Assistant")
 
 scenario = st.selectbox("Select scenario", [s.title for s in SCENARIOS], index=0)
@@ -75,6 +99,17 @@ for result in results:
 
 comparison = pd.DataFrame(rows)
 st.dataframe(comparison, use_container_width=True)
+
+action_counts = comparison["Action"].value_counts()
+common_action = action_counts.index[0]
+if len(action_counts) > 1:
+    st.info(
+        f"Comparison: {common_action} is the most frequently recommended action "
+        f"({int(action_counts.iloc[0])} of {len(results)} agents). "
+        "Differences arise from how each mechanism handles evidence: reflex agents match patterns directly, "
+        "model/goal/utility agents represent state or trade-offs, the learning agent adds historical outcomes, "
+        "and the LLM combines tool evidence with local model reasoning."
+    )
 
 for result in results:
     st.markdown(f"### {result.agent_name}")

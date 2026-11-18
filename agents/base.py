@@ -38,3 +38,16 @@ class AgentDecision:
             "action": self.action,
             "evidence": self.evidence,
         }
+
+
+def reports_not_received(scenario: "Scenario") -> bool:
+    text = scenario.customer_message.lower()
+    phrases = (
+        "not received",
+        "never received",
+        "didn't receive",
+        "did not receive",
+        "never got",
+        "missing package",
+    )
+    return any(phrase in text for phrase in phrases)
