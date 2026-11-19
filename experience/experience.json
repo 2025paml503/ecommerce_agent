@@ -1,9 +1,9 @@
 {
-  "total_decisions": 31,
+  "total_decisions": 46,
   "success_counts": {
-    "verify_delivery": 18,
-    "escalate_refund": 10,
-    "request_clarification": 10
+    "verify_delivery": 31,
+    "escalate_refund": 11,
+    "request_clarification": 11
   },
   "failure_counts": {
     "verify_delivery": 1,
@@ -12,6 +12,42 @@
   },
   "scenario_history": {
     "A": [
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
       {
         "action": "verify_delivery",
         "outcome": "success"
@@ -105,6 +141,18 @@
       {
         "action": "escalate_refund",
         "outcome": "success"
+      },
+      {
+        "action": "escalate_refund",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
       }
     ],
     "C": [
@@ -138,6 +186,18 @@
       },
       {
         "action": "request_clarification",
+        "outcome": "success"
+      },
+      {
+        "action": "request_clarification",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
+        "outcome": "success"
+      },
+      {
+        "action": "verify_delivery",
         "outcome": "success"
       }
     ]
