@@ -91,3 +91,18 @@ def test_learning_agent_updates_experience_history():
         assert evidence["historical_success_counts"]["verify_delivery"] == 1
         assert evidence["scenario_id"] == "A"
         assert "limitation" in evidence
+
+
+@pytest.mark.parametrize(
+    ("module_name", "class_name"),
+    [
+        ("agents.simle_reflex_agent", "SimpleReflexAgent"),
+        ("agents.model_based_reflex_agent", "ModelBasedReflexAgent"),
+        ("agents.goal_based_agent", "GoalBasedAgent"),
+        ("agents.utility_based_agent", "UtilityBasedAgent"),
+        ("agents.learning_agent", "LearningAgent"),
+    ],
+)
+def test_separate_classical_agent_modules(module_name, class_name):
+    module = __import__(module_name, fromlist=[class_name])
+    assert getattr(module, class_name)

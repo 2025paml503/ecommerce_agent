@@ -1,4 +1,4 @@
 E-commerce support assistant validation summary
 ==============================================
 Command: python -m pytest -q tests/test_agents.py
-Result: 5 passed
+Result: 10 passed

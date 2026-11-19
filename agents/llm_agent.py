@@ -4,7 +4,10 @@ import json
 import os
 from typing import Any, Dict, List
 
-from agents.base import AgentDecision, Scenario, reports_not_received
+try:
+    from .base import AgentDecision, Scenario, reports_not_received
+except ImportError:  # pragma: no cover - direct-script compatibility
+    from agents.base import AgentDecision, Scenario, reports_not_received
 
 try:
     from langchain_ollama import ChatOllama

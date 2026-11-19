@@ -75,7 +75,3 @@ The learning agent combines scenario patterns with local success/failure counts.
 - `screenshots/`: assignment demonstration captures
 - `test_results/`: scenario and pytest outputs
 - `tests/test_agents.py`: automated validation
-
-The Streamlit view shows the selected scenario, a concise agent-comparison table, and expandable reasoning/evidence for each classical agent. The LLM recommendation is run on demand and is added to the same comparison for the selected scenario.
-
-Current UI captures: [Scenario A](./screenshots/streamlit_scenario_A.png), [Scenario B](./screenshots/streamlit_scenario_B.png), [Scenario C](./screenshots/streamlit_scenario_C.png), and their [comparison tables](./screenshots/streamlit_comparison_A.png), [B](./screenshots/streamlit_comparison_B.png), [C](./screenshots/streamlit_comparison_C.png).

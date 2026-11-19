@@ -71,42 +71,6 @@
       {
         "action": "verify_delivery",
         "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
       }
     ],
     "B": [
@@ -141,18 +105,6 @@
       {
         "action": "escalate_refund",
         "outcome": "success"
-      },
-      {
-        "action": "escalate_refund",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
       }
     ],
     "C": [
@@ -186,18 +138,6 @@
       },
       {
         "action": "request_clarification",
-        "outcome": "success"
-      },
-      {
-        "action": "request_clarification",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
-        "outcome": "success"
-      },
-      {
-        "action": "verify_delivery",
         "outcome": "success"
       }
     ]
